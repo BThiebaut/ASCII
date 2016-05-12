@@ -29,25 +29,23 @@ public class Core {
 		ascii.add("# # # # #   # # #   #   # # # #  #  # # # # #   # # # # # # #    ## # #   #  #  # # # # ### # #  #  #        ");
 		ascii.add("# # ##   ## ##  ### #    ## # # ###  #  # # ### # # # #  #  #     # # # ##   #  ###  #  # # # #  #  ###  #  ");
 		
-		ArrayList<Integer> indexes = new ArrayList<Integer>();
+		ArrayList<Integer> indexTab = new ArrayList<Integer>();
 		for(char c : text.toCharArray()) {
-			if(c < 'A' || c > 'Z') indexes.add(26); // Si la lettre n'est pas entre A et Z, on remplace par "?"
+			if(c < 'A' || c > 'Z') indexTab.add(26); // Si la lettre n'est pas entre A et Z, on remplace par "?"
 			else { // Sinon on récupère l'index du charactère dans un tableau
 				for(char letter : alphabet.toCharArray()) {
 					if(c == letter) {
-						indexes.add(alphabet.indexOf(letter));
+						indexTab.add(alphabet.indexOf(letter));
 					}
 				}
 			}
 		}
 		String message = "";
 		for(int j = 0; j < height; j++) { // Colonnes
-			for(int k = 0; k < indexes.size(); k++) { // Lignes
+			for(int k = 0; k < indexTab.size(); k++) { // Lignes
 				// On récupère le caractère à l'index * longueur pour obtenir le début + la longueur pour la fin du caractère en cours
-				message += ascii.get(j).substring(indexes.get(k)*width, indexes.get(k)*width + width);
-				//System.out.print(ascii.get(j).substring(indexes.get(k)*width, indexes.get(k)*width + width));
+				message += ascii.get(j).substring(indexTab.get(k)*width, indexTab.get(k)*width + width);
 			}
-			//System.out.println("");
 			message += "\n";
 		}
 		
